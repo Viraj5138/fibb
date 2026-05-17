@@ -1,8 +1,4 @@
-// ============================================================
-//  Fibonacci Search Algorithm - College Library Book Finder
-//  Aim: Search for "Design and Analysis of Algorithms" in a
-//       sorted alphabetical library catalog.
-// ============================================================
+
 
 #include <iostream>
 #include <string>
@@ -10,18 +6,14 @@
 #include <algorithm>
 using namespace std;
 
-// ─────────────────────────────────────────────────────────────
-//  Fibonacci Search Function
-//  Returns the index of 'target' in sorted array 'books',
-//  or -1 if not found.
-// ─────────────────────────────────────────────────────────────
+
 int fibonacciSearch(const vector<string>& books, const string& target) {
     int n = books.size();
 
-    // Step 1: Generate Fibonacci numbers until Fm >= n
-    int fibM2 = 0;   // (m-2)'th Fibonacci number
-    int fibM1 = 1;   // (m-1)'th Fibonacci number
-    int fibM  = 1;   //  m'th    Fibonacci number
+    
+    int fibM2 = 0;   
+    int fibM1 = 1;   
+    int fibM  = 1;  
 
     while (fibM < n) {
         fibM2 = fibM1;
@@ -29,17 +21,17 @@ int fibonacciSearch(const vector<string>& books, const string& target) {
         fibM  = fibM1 + fibM2;
     }
 
-    // Step 2: Marks the eliminated range from the front
+    
     int offset = -1;
-    int step   = 0;  // tracks comparison count for display
+    int step   = 0;  
 
     cout << "\n  [Fibonacci Search Trace]\n";
     cout << "  n = " << n << " | Starting Fibonacci: Fm=" << fibM
          << ", Fm1=" << fibM1 << ", Fm2=" << fibM2 << "\n\n";
 
-    // Step 3: Keep searching while there are elements to compare
+    
     while (fibM > 1) {
-        // Valid index to compare: min(offset + fibM2, n-1)
+        
         int i = min(offset + fibM2, n - 1);
         step++;
 
@@ -47,14 +39,14 @@ int fibonacciSearch(const vector<string>& books, const string& target) {
              << " -> \"" << books[i] << "\"";
 
         if (books[i] < target) {
-            // Target is in the right sub-array
+            
             cout << "  →  TARGET is AHEAD\n";
             fibM  = fibM1;
             fibM1 = fibM2;
             fibM2 = fibM - fibM1;
             offset = i;
         } else if (books[i] > target) {
-            // Target is in the left sub-array
+        
             cout << "  →  TARGET is BEHIND\n";
             fibM  = fibM2;
             fibM1 = fibM1 - fibM2;
@@ -66,7 +58,7 @@ int fibonacciSearch(const vector<string>& books, const string& target) {
         }
     }
 
-    // Step 4: One last element to check
+    
     if (fibM1 && (offset + 1) < n) {
         int i = offset + 1;
         step++;
@@ -74,7 +66,7 @@ int fibonacciSearch(const vector<string>& books, const string& target) {
              << " -> \"" << books[i] << "\"";
 
         if (books[i] == target) {
-            cout << "  →  ✓ MATCH FOUND!\n";
+            cout << "  →   MATCH FOUND!\n";
             return i;
         } else {
             cout << "  →  No match.\n";
@@ -88,7 +80,7 @@ int fibonacciSearch(const vector<string>& books, const string& target) {
 //  Main
 // ─────────────────────────────────────────────────────────────
 int main() {
-    // Alphabetically sorted library catalog (15 books)
+    
     vector<string> library = {
         "Artificial Intelligence: A Modern Approach",
         "Clean Code",
@@ -110,9 +102,9 @@ int main() {
     string target = "Design and Analysis of Algorithms";
 
     // ── Display the library catalog ──────────────────────────
-    cout << "╔══════════════════════════════════════════════════╗\n";
+   
     cout << "║       COLLEGE LIBRARY - FIBONACCI BOOK SEARCH   ║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+   
 
     cout << "  Library Catalog (Sorted Alphabetically):\n";
     cout << "  ─────────────────────────────────────────\n";
@@ -123,10 +115,10 @@ int main() {
     cout << "\n  Searching for: \"" << target << "\"\n";
     cout << "  ─────────────────────────────────────────";
 
-    // ── Run Fibonacci Search ─────────────────────────────────
+    
     int result = fibonacciSearch(library, target);
 
-    // ── Display result ───────────────────────────────────────
+    
     cout << "\n  ─────────────────────────────────────────\n";
     if (result != -1) {
         cout << "\n  ✅ Book FOUND at rack index: " << result << "\n";
