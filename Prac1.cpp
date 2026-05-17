@@ -1272,3 +1272,185 @@
 
 //     return 0;
 // }
+
+// ************************************************************************************************
+
+
+//  OBST
+
+
+// #include <iostream>
+// #include <string>
+// using namespace std;
+
+// struct Node
+// {
+//     string product;
+//     int frequency;
+//     Node* left;
+//     Node* right;
+// };
+
+// Node* createNode(string product, int frequency)
+// {
+//     Node* temp = new Node();
+
+//     temp->product = product;
+//     temp->frequency = frequency;
+//     temp->left = NULL;
+//     temp->right = NULL;
+
+//     return temp;
+// }
+
+// Node* insert(Node* root, string product, int frequency)
+// {
+//     if (root == NULL)
+//     {
+//         return createNode(product, frequency);
+//     }
+
+//     if (frequency < root->frequency)
+//     {
+//         root->left = insert(root->left, product, frequency);
+//     }
+//     else
+//     {
+//         root->right = insert(root->right, product, frequency);
+//     }
+
+//     return root;
+// }
+
+// Node* findMin(Node* root)
+// {
+//     while (root->left != NULL)
+//     {
+//         root = root->left;
+//     }
+
+//     return root;
+// }
+
+// Node* deleteProduct(Node* root, int frequency)
+// {
+//     if (root == NULL)
+//     {
+//         return NULL;
+//     }
+
+//     if (frequency < root->frequency)
+//     {
+//         root->left = deleteProduct(root->left, frequency);
+//     }
+
+//     else if (frequency > root->frequency)
+//     {
+//         root->right = deleteProduct(root->right, frequency);
+//     }
+
+//     else
+//     {
+//         if (root->left == NULL && root->right == NULL)
+//         {
+//             delete root;
+//             return NULL;
+//         }
+
+//         else if (root->left == NULL)
+//         {
+//             Node* temp = root->right;
+//             delete root;
+//             return temp;
+//         }
+
+//         else if (root->right == NULL)
+//         {
+//             Node* temp = root->left;
+//             delete root;
+//             return temp;
+//         }
+
+//         Node* temp = findMin(root->right);
+
+//         root->product = temp->product;
+//         root->frequency = temp->frequency;
+
+//         root->right = deleteProduct(root->right, temp->frequency);
+//     }
+
+//     return root;
+// }
+
+// void display(Node* root)
+// {
+//     if (root != NULL)
+//     {
+//         display(root->right);
+
+//         cout << root->product << " - Purchase Frequency: ";
+//         cout << root->frequency << endl;
+
+//         display(root->left);
+//     }
+// }
+
+// int main()
+// {
+//     Node* root = NULL;
+
+//     root = insert(root, "Laptop", 50);
+//     root = insert(root, "Mouse", 20);
+//     root = insert(root, "Keyboard", 35);
+//     root = insert(root, "Headphones", 60);
+
+//     int choice;
+//     string product;
+//     int frequency;
+
+//     do
+//     {
+//         cout << "\n--- Online Store Inventory ---\n";
+//         cout << "1. Insert Product\n";
+//         cout << "2. Delete Product\n";
+//         cout << "3. Display Products\n";
+//         cout << "4. Exit\n";
+//         cout << "Enter choice: ";
+//         cin >> choice;
+
+//         switch(choice)
+//         {
+//             case 1:
+//                 cout << "Enter Product Name: ";
+//                 cin >> product;
+
+//                 cout << "Enter Purchase Frequency: ";
+//                 cin >> frequency;
+
+//                 root = insert(root, product, frequency);
+//                 break;
+
+//             case 2:
+//                 cout << "Enter Frequency of Product to Delete: ";
+//                 cin >> frequency;
+
+//                 root = deleteProduct(root, frequency);
+//                 break;
+
+//             case 3:
+//                 cout << "\nProducts in Sorted Order:\n";
+//                 display(root);
+//                 break;
+
+//             case 4:
+//                 cout << "Program Ended";
+//                 break;
+
+//             default:
+//                 cout << "Invalid Choice";
+//         }
+
+//     } while(choice != 4);
+
+//     return 0;
+// }
