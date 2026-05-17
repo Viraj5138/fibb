@@ -109,10 +109,10 @@ int main() {
 
     string target = "Design and Analysis of Algorithms";
 
-    // ── Display the library catalog ──────────────────────────
-    cout << "╔══════════════════════════════════════════════════╗\n";
+    
+ 
     cout << "║       COLLEGE LIBRARY - FIBONACCI BOOK SEARCH   ║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+   
 
     cout << "  Library Catalog (Sorted Alphabetically):\n";
     cout << "  ─────────────────────────────────────────\n";
@@ -123,16 +123,16 @@ int main() {
     cout << "\n  Searching for: \"" << target << "\"\n";
     cout << "  ─────────────────────────────────────────";
 
-    // ── Run Fibonacci Search ─────────────────────────────────
+    
     int result = fibonacciSearch(library, target);
 
-    // ── Display result ───────────────────────────────────────
+   
     cout << "\n  ─────────────────────────────────────────\n";
     if (result != -1) {
-        cout << "\n  ✅ Book FOUND at rack index: " << result << "\n";
+        cout << "\n   Book FOUND at rack index: " << result << "\n";
         cout << "     Title: \"" << library[result] << "\"\n";
     } else {
-        cout << "\n  ❌ Book NOT found in the library.\n";
+        cout << "\n   Book NOT found in the library.\n";
     }
 
     cout << "\n  Algorithm  : Fibonacci Search\n";
