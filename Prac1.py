@@ -1,31 +1,40 @@
 # // 1.BFS
 
 graph = {
-    0: [1, 2],
-    1: [0, 3, 4],
-    2: [0, 5],
-    3: [1],
-    4: [1],
-    5: [2]
+    1: [2,3],
+    2: [1,4],
+    3: [1,5],
+    4: [2,6],
+    5: [3,6],
+    6: [4,5]
 }
 
-def bfs(start):
+def bfs_rec(queue, visited, graph):
+
+    if not queue:
+        return
+    
+    node = queue.pop(0)
+    print(node, end=" ")
+
+    for neighbor in graph:
+        if neighbor not in visited:
+            visited.add(neighbor)
+            queue.append(neighbor)
+
+    bfs_rec(queue, visited, graph)
+
+def bfs(graph, start):
     visited = set()
     queue = [start]
 
     visited.add(start)
 
-    while queue:
-        node = queue.pop(0)
-        print(node, end=" ")
+    print("BFS")
+    bfs_rec(queue, visited, graph)
+    print()
 
-        for neighbor in graph[node]:
-            if neighbor not in visited:
-                visited.add(neighbor)
-                queue.append(neighbor)
-
-print("BFS Traversal:")
-bfs(0)
+bfs(graph,1)
 
 
 
